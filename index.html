@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Click Game 😮‍💨</title>
+<style>
+  body {
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 40px;
+    background: #f0f0f0;
+  }
+  button {
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+  }
+  #clickBtn {
+    background: #ff6363;
+    color: white;
+    margin-top: 20px;
+  }
+  #startBtn {
+    background: #4caf50;
+    color: white;
+  }
+  h2 {
+    margin: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Click Game 😎</h1>
+
+<h2>Score: <span id="score">0</span></h2>
+<h2>Time Left: <span id="time">10</span> sec</h2>
+
+<button id="startBtn" onclick="startGame()">Start Game</button>
+<br><br>
+<button id="clickBtn" onclick="clickMe()">Click Me!</button>
+
+<script>
+let score = 0;
+let timeLeft = 10;
+let gameStarted = false;
+
+function clickMe() {
+  if (!gameStarted) return;
+  score++;
+  document.getElementById("score").innerText = score;
+}
+
+function startGame() {
+  if (gameStarted) return;
+  
+  score = 0;
+  timeLeft = 10;
+  gameStarted = true;
+  document.getElementById("score").innerText = score;
+  document.getElementById("time").innerText = timeLeft;
+
+  let timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById("time").innerText = timeLeft;
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      gameStarted = false;
+      alert("Game Over! Your score: " + score);
+    }
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
